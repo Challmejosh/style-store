@@ -1,5 +1,6 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import ProductCard from '@/components/ProductCard';
 import CategoryFilter from '@/components/CategoryFilter';
@@ -8,8 +9,15 @@ import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 
 const Products = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchParams] = useSearchParams();
+  const categoryFromUrl = searchParams.get('category') || 'all';
+  
+  const [selectedCategory, setSelectedCategory] = useState(categoryFromUrl);
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    setSelectedCategory(categoryFromUrl);
+  }, [categoryFromUrl]);
 
   const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
