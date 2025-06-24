@@ -1,6 +1,7 @@
 
 import { ShoppingBag, Search, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useCart } from '@/contexts/CartContext';
@@ -16,26 +17,28 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              StyleStore
-            </h1>
+            <Link to="/">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                StyleStore
+              </h1>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <a href="/" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+              <Link to="/" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
                 Home
-              </a>
-              <a href="/products" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+              </Link>
+              <Link to="/products" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
                 Products
-              </a>
-              <a href="/about" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+              </Link>
+              <Link to="/about" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
                 About
-              </a>
-              <a href="/contact" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+              </Link>
+              <Link to="/contact" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
                 Contact
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -78,18 +81,18 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50">
-              <a href="/" className="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">
+              <Link to="/" className="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">
                 Home
-              </a>
-              <a href="/products" className="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">
+              </Link>
+              <Link to="/products" className="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">
                 Products
-              </a>
-              <a href="/about" className="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">
+              </Link>
+              <Link to="/about" className="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">
                 About
-              </a>
-              <a href="/contact" className="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">
+              </Link>
+              <Link to="/contact" className="text-gray-900 hover:text-blue-600 block px-3 py-2 text-base font-medium">
                 Contact
-              </a>
+              </Link>
               <div className="px-3 py-2">
                 <Input
                   type="text"
