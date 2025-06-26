@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useCart } from '@/contexts/CartContext';
+import { useToast } from '@/hooks/useToast';
 
 const Cart = () => {
   const { items, updateQuantity, removeFromCart, clearCart, getTotalPrice } = useCart();
@@ -20,6 +21,15 @@ const Cart = () => {
 
   const totalPrice = getTotalPrice();
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  const { showToast, Toast } = useToast();
+
+// In your component JSX:
+// {Toast}
+
+// To show a toast:
+
+// To show a toast with confirmation:
+
 
   if (items.length === 0) {
     return (
@@ -222,9 +232,10 @@ const Cart = () => {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                  Proceed to Checkout
-                </Button>
+                  <Button 
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    Proceed to Checkout
+                  </Button>
               </CardFooter>
             </Card>
           </div>
