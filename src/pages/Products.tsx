@@ -11,17 +11,23 @@ import { Search } from 'lucide-react';
 const Products = () => {
   const [searchParams] = useSearchParams();
   const categoryFromUrl = searchParams.get('category') || 'all';
+  const searchFromUrl = searchParams.get('search') || '';
   
   const [selectedCategory, setSelectedCategory] = useState(categoryFromUrl);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(searchFromUrl);
 
   useEffect(() => {
     setSelectedCategory(categoryFromUrl);
   }, [categoryFromUrl]);
 
+  useEffect(() => {
+    setSearchTerm(searchFromUrl);
+  }, [searchFromUrl]);
+
   const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         product.category.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -33,6 +39,11 @@ const Products = () => {
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">All Products</h1>
           <p className="text-xl text-gray-600">Explore our complete collection</p>
+          {searchTerm && (
+            <p className="text-lg text-blue-600 mt-2">
+              Search results for: "{searchTerm}"
+            </p>
+          )}
         </div>
 
         <div className="mb-8">
@@ -61,7 +72,12 @@ const Products = () => {
 
         {filteredProducts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-xl text-gray-600">No products found matching your criteria.</p>
+            <p className="text-xl text-gray-600">
+              {searchTerm 
+                ? `No products found matching "${searchTerm}".`
+                : "No products found matching your criteria."
+              }
+            </p>
           </div>
         )}
       </div>
