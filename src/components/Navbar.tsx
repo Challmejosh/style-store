@@ -36,7 +36,7 @@ const Navbar = () => {
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex w-full justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/">
@@ -47,7 +47,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div className="ml-10 flex items-baseline space-x-8">
               <Link to="/" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
                 Home
@@ -65,7 +65,7 @@ const Navbar = () => {
           </div>
 
           {/* Search and Cart */}
-          <div className="flex items-center space-x-4">
+          <div className="w-full flex justify-end items-center space-x-4">
             <div className="hidden md:block">
               <form onSubmit={handleSearchSubmit} className="relative">
                 <Input
@@ -91,7 +91,7 @@ const Navbar = () => {
             </Link>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <Button
                 variant="ghost"
                 size="sm"
@@ -105,7 +105,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50">
               <Link 
                 to="/" 
